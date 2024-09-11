@@ -5,7 +5,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,6 +18,31 @@ class MyApp extends StatelessWidget {
 }
 
 class HomeScreen extends StatelessWidget {
+
+  //Components
+  Widget _titleSideBar() {
+    return const DrawerHeader(
+      decoration: BoxDecoration(
+        color: Colors.blue,
+      ),
+      child: Text(
+        'Drawer Header',
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 24,
+        ),
+      ),
+    );
+  }
+
+  ListTile _listItem(String text, Icon icon, void Function()? action){
+    return ListTile(
+              title: Text(text),
+              leading: icon,
+              onTap: action
+            );
+  }
+  //builder
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,9 +50,18 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Tela Inicial'),
       ),
       drawer: Drawer(
-        child: (ListView(
-          children: <Widget>[],
-        )),
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            _titleSideBar(),
+            _listItem("Página Inicial", const Icon(Icons.home), () {
+                Navigator.pop(context);
+              }),
+              _listItem("Segunda Tela", const Icon((Icons.arrow_forward)), () {
+                Navigator.pop(context);
+              })
+          ],
+        ),
       ),
       body: const Center(
         child: Text(
