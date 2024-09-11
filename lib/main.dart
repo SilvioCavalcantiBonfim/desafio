@@ -17,7 +17,20 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+  class _HomeScreenState extends State<HomeScreen> {
+    String _homeTitle = "";
+
+    void _updateTitle(){
+      setState(() {
+        _homeTitle = "Boas-Vindas";
+      });
+    }
 
   //Components
   Widget _titleSideBar() {
@@ -55,6 +68,7 @@ class HomeScreen extends StatelessWidget {
           children: <Widget>[
             _titleSideBar(),
             _listItem("Página Inicial", const Icon(Icons.home), () {
+                _updateTitle();
                 Navigator.pop(context);
               }),
               _listItem("Segunda Tela", const Icon((Icons.arrow_forward)), () {
@@ -63,9 +77,9 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: const Center(
+      body: Center(
         child: Text(
-          'Olá, Flutter!',
+        _homeTitle,
           style: TextStyle(fontSize: 24),
         ),
       ),
