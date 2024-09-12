@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'second_screen.dart';
+import 'terceira_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -73,7 +74,11 @@ class HomeScreen extends StatefulWidget {
                 Navigator.pop(context);
               }),
               _listItem("Segunda Tela", const Icon((Icons.arrow_forward)), () {
-                SecondScreen();
+                Navigator.push(context, MaterialPageRoute(builder: (context) => SecondScreen()));
+              })
+              ,
+              _listItem("Terceira Tela", const Icon((Icons.arrow_forward)), () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => TerceiraScreen()));
               })
           ],
         ),
