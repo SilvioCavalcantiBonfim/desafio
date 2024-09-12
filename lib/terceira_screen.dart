@@ -33,7 +33,7 @@ class TerceiraScreen extends StatelessWidget {
                   width: 80.0,
                   height: 80.0,
                   builder: (ctx) => Icon(
-                    Icons.location_on,
+                    Icons.person_pin_circle,
                     color: Colors.red,
                     size: 40.0,
                   ),

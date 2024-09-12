@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'second_screen.dart';
 import 'terceira_screen.dart';
+import 'dart:io';
 
 void main() {
+  HttpOverrides.global = MyHttpOverrides();
   runApp(MyApp());
 }
 
@@ -90,5 +92,14 @@ class HomeScreen extends StatefulWidget {
         ),
       ),
     );
+  }
+}
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    final client = super.createHttpClient(context);
+    client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+    return client;
   }
 }
